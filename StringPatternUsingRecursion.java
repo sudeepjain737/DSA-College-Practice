@@ -16,28 +16,34 @@ false
  */
 
 public class StringPatternUsingRecursion {
-    public boolean stringPattern(String s,int i){
+    public boolean stringPattern(String s,int i ){
+        if(s.length() == 0){
+            return false;
+        }
         if(i == s.length()){
             return true;
         }
-        if(s.charAt(i) != 'a'){
+        if(s.charAt(0) != 'a'){
             return false;
         }
         else{
-            if(i == s.length()-1 && s.charAt(i) == 'a'){
-                return true;
+            if(s.charAt(i) == 'a'){
+                return stringPattern(s,i+1);
             }
-            if(s.substring(i+1,i+3).equals("bb") == false){
+            if(s.charAt(i) != 'a' && i == s.length()-1){
                 return false;
             }
+            if(s.substring(i,i+2).equals("bb")) {
+                    return stringPattern(s, i + 2);
+            }
             else{
-               return stringPattern(s,i+3);
+                return false;
             }
         }
     }
-
     public static void main(String[] args) {
         StringPatternUsingRecursion s1 = new StringPatternUsingRecursion();
-        System.out.println(s1.stringPattern("abb",0));
+        System.out.println(s1.stringPattern("abbabb",0));
     }
 }
+
